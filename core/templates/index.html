@@ -1,0 +1,33 @@
+{% extends 'modelo.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Otaku Estudante</title>
+{% endblock %}
+
+{% block conteudo %}
+   <div class="banner">
+        <div class="slider" style="--quantity: 10">
+            <div class="item" style="--position: 1"><img src="{% static 'img/fate.jpg' %}" alt=""></div>
+            <div class="item" style="--position: 2"><img src="{% static 'img/blue_lock.jpg' %}" alt=""></div>
+            <div class="item" style="--position: 3"><img src="{% static 'img/dr_stone.jpg' %}" alt=""></div>
+            <div class="item" style="--position: 4"><img src="{% static 'img/bungou_stray_dogs.jpg' %}" alt=""></div>
+            <div class="item" style="--position: 5 "><img src="{% static 'img/inuyasha.jpg' %}" alt=""></div>
+            <div class="item" style="--position: 6 "><img src="{% static 'img/jujutsu_kaisen.jpg' %}" alt=""></div>
+            <div class="item" style="--position: 7 "><img src="{% static 'img/kage_no_jitsuryokusha.jpg' %}" alt=""></div>
+            <div class="item" style="--position: 8 "><img src="{% static 'img/solo_leveling.jpg' %}" alt=""></div>
+            <div class="item" style="--position: 9 "><img src="{% static 'img/kimetsu_no_yaiba.jpg' %}" alt=""></div>
+            <div class="item" style="--position: 10 "><img src="{% static 'img/tensei_shitara_slime.jpg' %}" alt=""></div>
+            
+        </div>
+        <div class="content">
+            <h1 data-content="Otaku Estudante">Otaku Estudante</h1>
+            <div class="author">
+                <h2>LUN DEV</h2>
+                <p><b>Web Design</b></p>
+                <p>Subscribe to the channel to watch many interesting videos</p>
+            </div>
+            <div class="model"></div>
+        </div>
+    </div>
+{% endblock %}
