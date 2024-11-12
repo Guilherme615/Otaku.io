@@ -1,0 +1,30 @@
+{% extends 'modelo.html' %}
+{% load static %}
+
+{% block titulo %}
+    <title>Upload da Foto de Perfil</title>
+{% endblock %}
+
+{% block conteudo %}
+<div class="container-profile-upload mt-5">
+    <div class="profile-upload-card">
+        <img src="{% static 'img/logo.png' %}" alt="Logo" class="upload-logo">
+        <h2>Foto de Perfil:</h2>
+        
+        <div class="profile-upload-area" id="uploadArea">
+            <span>Arraste aqui sua foto ou clique para selecionar.</span>
+            <input type="file" id="fileInput" name="profile_picture" accept="image/*" hidden onclick="document.getElementById('fileInput').click()">
+        </div>
+
+        <div class="profile-preview">
+            <img id="previewImage" src="" alt="Preview" hidden>
+            <span id="username">{{ user.username }}</span>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <button type="submit" class="confirm-profile-btn">Confirmar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

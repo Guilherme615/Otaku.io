@@ -13,40 +13,56 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/banner.css' %}">
+    <link rel="stylesheet" href="{% static 'css/photo.css' %}">
 </head>
 <body>
     {% block sidebar %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="">Logo</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+        <!-- Logo -->
+        <a class="navbar-brand" href="">
+            <img src="{% static 'img/logo.png' %}" alt="Logo" style="height: 60px;">
+        </a>
+        
+        <!-- Navbar items aligned to the left -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'inicio' %}">Início</a>
+                </li>
+                {% if user.is_authenticated %}   
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'inicio' %}">Início</a>
+                        <form action="{% url 'logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link btn">Logout</button>
+                        </form>
                     </li>
-                    {% if user.is_authenticated %}   
-                        <li class="nav-item">
-                            <form action="{% url 'logout' %}" method="post">
-                                {% csrf_token %}
-                                <button type="submit" class="nav-link btn">Logout</button>
-                            </form>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link btn-custom-login text-light" href="{% url 'login' %}" style="margin-right: 20px;">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn-custom text-light" href="{% url 'register' %}">Cadastrar</a>
-                        </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link btn-custom-login text-light" href="{% url 'login' %}" style="margin-right: 20px;">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-custom text-light" href="{% url 'register' %}">Cadastrar</a>
+                    </li>
+                {% endif %}
+            </ul>
+    
+            <!-- Alinhamento à direita para o perfil do usuário -->
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav navbar-profile ml-auto">
+                <li class="nav-item d-flex align-items-center">
+                    {% if user.is_authenticated %}
+                        <div class="navbar-profile">
+                            <img src="{{ user.Profile.profile_picture.url }}" alt="User Photo" class="profile-picture">
+                            <span>{{ user.username }}</span>
+                        </div>
                     {% endif %}
-                </ul>
-            </div>
+                </li>
+            </ul>
+            {% endif %}
         </div>
     </nav>
+    
+    
     {% endblock %}
 
     {% block conteudo %}
@@ -65,6 +81,7 @@
     <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/photo.js' %}"></script>
 
     {% block scripts %}
     {% endblock %}

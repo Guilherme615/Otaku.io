@@ -2,9 +2,12 @@ from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import login, authenticate
-from .forms import RegisterForm
+from .forms import CustomUserCreationForm, ProfilePictureForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
+from .models import Profile
+from django.contrib.auth.decorators import login_required
+from django.db import IntegrityError
 
 
 # Create your views here.
@@ -12,15 +15,16 @@ class IndexView(View):
     def get(self, request):
         return render(request, 'index.html')
 
+
 def register(request):
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)  # Loga o usuário automaticamente após o registro
-            return redirect('home')  # Redireciona para a página inicial
+            return redirect('profile_photo')  # Redireciona para a página inicial
     else:
-        form = RegisterForm()
+        form = CustomUserCreationForm()
     return render(request, 'register.html', {'form': form})
 
 def login_view(request):
@@ -42,3 +46,24 @@ def login_view(request):
         form = AuthenticationForm()
 
     return render(request, 'login.html', {'form': form})
+
+@login_required
+def upload_profile_picture(request):
+    profile, created = Profile.objects.get_or_create(user=request.user)
+    
+    if request.method == 'POST':
+        form = ProfilePictureForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('profile')  # Redireciona para a página de perfil
+            except IntegrityError:
+                form.add_error('email', 'Esse email já está em uso.')
+    else:
+        form = ProfilePictureForm(instance=profile)
+    
+    return render(request, 'profile_photo.html', {'form': form})
+
+@login_required
+def profile_view(request):
+    return render(request, 'profile.html')

@@ -9,7 +9,7 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="seal-container">
+            <div class="seal-container text-center mb-4">
                 <img src="{% static 'img/logo.png' %}" alt="Selo do Logo" class="seal-image">
             </div>
             
@@ -19,26 +19,29 @@
                     <form method="post" action="{% url 'register' %}">
                         {% csrf_token %}
                         
+                        <!-- Nome -->
                         <div class="mb-4">
-                            <label for="username" class="form-label">Usuário</label>
-                            <input type="text" class="form-control rounded" id="username" name="username">
+                            <label for="username" class="form-label">Nome</label>
+                            <input type="text" class="form-control rounded" id="username" name="username" value="{{ form.username.value|default_if_none:'' }}">
                             {% if form.username.errors %}
                                 <div class="text-danger mt-1">
                                     {{ form.username.errors }}
                                 </div>
                             {% endif %}
                         </div>
-                        
+
+                        <!-- Email -->
                         <div class="mb-4">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control rounded" id="email" name="email">
+                            <input type="email" class="form-control rounded" id="email" name="email" value="{{ form.email.value|default_if_none:'' }}">
                             {% if form.email.errors %}
                                 <div class="text-danger mt-1">
                                     {{ form.email.errors }}
                                 </div>
                             {% endif %}
                         </div>
-                        
+
+                        <!-- Senha -->
                         <div class="mb-4">
                             <label for="password" class="form-label">Senha</label>
                             <input type="password" class="form-control rounded" id="password" name="password">
@@ -48,7 +51,6 @@
                                 </div>
                             {% endif %}
                         </div>
-                        
 
                         <div class="text-center">
                             <button type="submit" class="btn btn-custom">Cadastrar</button>
@@ -61,7 +63,7 @@
                         {% endif %}
                     </form>
                 </div>
-                <div class="text-center">
+                <div class="text-center mt-3">
                     <small>Já tem uma conta? <a href="{% url 'login' %}">Login</a></small>
                 </div>
             </div>

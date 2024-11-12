@@ -1,0 +1,85 @@
+.container-profile-upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7e8d4;
+}
+
+.profile-upload-card {
+    text-align: center;
+    background-color: #fff6e5;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+.upload-logo {
+    width: 80px;
+    margin-bottom: 20px;
+}
+
+.profile-upload-area {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #d3d3d3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    margin: 20px auto;
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-upload-area:hover {
+    background-color: #c0c0c0;
+}
+
+.profile-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.profile-preview img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.confirm-profile-btn {
+    background-color: #b33b3b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.profile-footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+}
+
+.navbar-profile {
+    margin-left: auto; /* Empurra o bloco para o canto direito */
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo para a imagem de perfil */
+.navbar-profile .profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
