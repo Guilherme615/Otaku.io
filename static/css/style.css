@@ -33,7 +33,7 @@
     inset: 0 0 0 0;
     transform: 
         rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
-        translateZ(550px); /* Distância fixa */
+        translateZ(400px); /* Distância fixa */
 }
 .banner .slider .item img {
     width: 100%;

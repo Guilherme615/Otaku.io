@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="">Início</a>
+                        <a class="nav-link" href="{% url 'inicio' %}">Início</a>
                     </li>
                     {% if user.is_authenticated %}   
                         <li class="nav-item">
@@ -37,7 +37,7 @@
                             <a class="nav-link" href="">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Cadastrar</a>
+                            <a class="nav-link" href="{% url 'register' %}">Cadastrar</a>
                         </li>
                     {% endif %}
                 </ul>
