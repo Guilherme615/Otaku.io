@@ -17,3 +17,4 @@ class UserProfile(models.Model):
     profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
     # Remova unique=True caso esteja presente e não seja necessário
     email = models.EmailField(blank=True, null=True)
+

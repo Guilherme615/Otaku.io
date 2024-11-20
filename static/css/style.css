@@ -1,91 +1,174 @@
 /* Gradiente de fundo */
 body {
-min-height: 100vh; /* Define a altura mínima para cobrir toda a tela */
-background: linear-gradient(135deg, #DBD2C9 65%, #6F7666 100%);
-margin: 0; /* Remove qualquer margem padrão */
+    min-height: 100vh; /* Define a altura mínima para cobrir toda a tela */
+    display: flex; /* Define o layout do body como flexível */
+    flex-direction: column; /* Organiza os elementos em coluna (header, conteúdo, footer) */
+    background: linear-gradient(135deg, #DBD2C9 65%, #6F7666 100%);
+    margin: 0; /* Remove qualquer margem padrão */
 }
+
+#conteudo {
+    flex: 1; /* Faz o conteúdo crescer e empurrar o footer para baixo */
+}
+
 /* Estilo para o formulário */
 .custom-card {
-background-color: #FFF3DE;
-box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-border: none;
-border-radius: 80px;
-padding: 2rem;
-margin-top: 7rem;
+    background-color: #FFF3DE;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border: none;
+    border-radius: 80px;
+    padding: 2rem;
+    margin-top: 7rem;
+    margin-bottom: 5rem; /* Adiciona espaço abaixo do card */
 }
 
 /* Estilo dos inputs e labels */
 .form-label {
-font-weight: bold;
-color: #6F7666;
-text-align: center; /* Centraliza os labels */
-display: block;
+    font-weight: bold;
+    color: #6F7666;
+    text-align: center; /* Centraliza os labels */
+    display: block;
 }
 .form-control {
-background-color: #f9f4e9;
-border: 1px solid #ddd;
-border-radius: 5px;
-box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
-transition: border-color 0.3s ease;
+    background-color: #f9f4e9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
 }
 .form-control:focus {
-border-color: #6F7666;
-box-shadow: 0 0 5px rgba(111, 118, 102, 0.3);
+    border-color: #6F7666;
+    box-shadow: 0 0 5px rgba(111, 118, 102, 0.3);
 }
 
 /* Botão de submit */
 .btn-custom {
-background-color: #B1313F;
-color: #FFF;
-border-radius: 5px;
-padding: 0.5rem 1.5rem;
-font-weight: bold;
+    background-color: #B1313F;
+    color: #FFF;
+    border-radius: 5px;
+    padding: 0.5rem 1.5rem;
+    font-weight: bold;
 }
 .btn-custom:hover {
-background-color: #86242e;
+    background-color: #86242e;
 }
 
 .btn-custom-login {
-background-color: #868686;
-color: #FFF;
-border-radius: 5px;
-padding: 0.5rem 1.5rem;
-font-weight: bold;
+    background-color: #868686;
+    color: #FFF;
+    border-radius: 5px;
+    padding: 0.5rem 1.5rem;
+    font-weight: bold;
 }
 .btn-custom-login:hover {
-background-color: #5f5f5f;
+    background-color: #5f5f5f;
 }
 
 /* Centraliza os campos do formulário */
 .form-group {
-text-align: center; /* Centraliza todos os campos */
+    text-align: center; /* Centraliza todos os campos */
 }
 
-/* Garante que a página ocupe a altura total da janela */
+/* Rodapé ajustado */
 footer {
-position: fixed;
-bottom: 0;
-left: 0;
-width: 100%;    
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto; /* Permite que o footer fique no final do conteúdo */
 }
 
 /* Estilo do selo de imagem */
 .seal-container {
-    position: relative;  /* Permite o posicionamento absoluto dentro do container */
+    position: relative; /* Permite o posicionamento absoluto dentro do container */
     text-align: center;
     margin-bottom: 20px; /* Ajuste a distância entre o selo e o formulário */
 }
 
 .seal-image {
-    position: absolute;  /* Coloca a imagem fora do fluxo normal do layout */
-    top: -50px;  /* Ajusta a posição para ficar acima do formulário */
-    left: 50%;  /* Centraliza a imagem horizontalmente */
+    position: absolute; /* Coloca a imagem fora do fluxo normal do layout */
+    top: -50px; /* Ajusta a posição para ficar acima do formulário */
+    left: 50%; /* Centraliza a imagem horizontalmente */
     transform: translateX(-50%); /* Garante que a imagem esteja exatamente no centro */
-    width: 100px;  /* Ajuste o tamanho conforme necessário */
-    height: 100px;  /* Ajuste a altura para manter a proporção */
-    border-radius: 50%;  /* Deixa a imagem redonda */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);  /* Sombra para dar destaque */
-    object-fit: cover;  /* Garante que a imagem cubra toda a área do selo */
-    z-index: 10;  /* Coloca a imagem acima do restante do conteúdo */
+    width: 100px; /* Ajuste o tamanho conforme necessário */
+    height: 100px; /* Ajuste a altura para manter a proporção */
+    border-radius: 50%; /* Deixa a imagem redonda */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar destaque */
+    object-fit: cover; /* Garante que a imagem cubra toda a área do selo */
+    z-index: 10; /* Coloca a imagem acima do restante do conteúdo */
     margin-top: 7rem;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: #f4f4f9;
+    padding: 20px;
+}
+
+.profile-card {
+    width: 400px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.profile-header h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.profile-photo {
+    margin-bottom: 20px;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+
+.profile-info p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #555;
+}
+
+.profile-actions .btn {
+    display: block;
+    margin: 10px auto;
+    width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #b21f2d;
 }
