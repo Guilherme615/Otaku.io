@@ -1,14 +1,16 @@
+/* Estilo geral da página */
 .container-profile-upload {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f7e8d4;
+    background-color: #f7e8d4; /* Cor de fundo suave */
 }
 
+/* Card principal */
 .profile-upload-card {
     text-align: center;
-    background-color: #fff6e5;
+    background-color: #fff6e5; /* Fundo do card */
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -16,70 +18,95 @@
     width: 100%;
 }
 
+/* Logo */
 .upload-logo {
     width: 80px;
     margin-bottom: 20px;
 }
 
+/* Área do círculo para upload */
 .profile-upload-area {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background-color: #d3d3d3;
+    background-color: #d3d3d3; /* Cor padrão do círculo */
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #333;
-    margin: 20px auto;
     position: relative;
+    margin: 20px auto;
     cursor: pointer;
+    overflow: hidden; /* Garante que o conteúdo fique no formato do círculo */
 }
 
 .profile-upload-area:hover {
-    background-color: #c0c0c0;
+    background-color: #c0c0c0; /* Cor ao passar o mouse */
 }
 
-.profile-preview {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
+/* Imagem de preview no círculo */
+.profile-upload-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantém proporções sem distorcer */
+    display: block;
 }
 
-.profile-preview img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
+/* Texto abaixo da foto */
+#username {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #333;
 }
 
+/* Botão de confirmação */
 .confirm-profile-btn {
-    background-color: #b33b3b;
+    background-color: #b33b3b; /* Cor principal do botão */
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 20px;
+    font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.profile-footer {
-    text-align: center;
-    margin-top: 20px;
-    color: #333;
+.confirm-profile-btn:hover {
+    background-color: #902d2d; /* Cor ao passar o mouse */
 }
 
+/* Estilo da navbar com foto de perfil */
 .navbar-profile {
     margin-left: auto; /* Empurra o bloco para o canto direito */
     display: flex;
     align-items: center;
 }
 
-/* Estilo para a imagem de perfil */
+/* Imagem de perfil na navbar */
 .navbar-profile .profile-picture {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .profile-upload-card {
+        padding: 20px;
+    }
+
+    .upload-logo {
+        width: 60px;
+    }
+
+    .profile-upload-area {
+        width: 120px;
+        height: 120px;
+    }
+
+    .confirm-profile-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
 }
