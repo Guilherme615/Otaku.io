@@ -23,7 +23,7 @@ class CustomUserCreationForm(forms.ModelForm):
 class ProfilePictureForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['photo', 'email']  # Inclui o campo de email no formulário
+        fields = ['photo']  # Campo usado para armazenar a foto de perfil
 
     def clean_email(self):
         email = self.cleaned_data.get('email')

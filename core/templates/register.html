@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block titulo %}
-<title>Otaku Estudante</title>
+    <title>Registro - Otaku Estudante</title>
 {% endblock %}
 
 {% block conteudo %}
@@ -12,17 +12,15 @@
             <div class="seal-container text-center mb-4">
                 <img src="{% static 'img/logo.png' %}" alt="Selo do Logo" class="seal-image">
             </div>
-            
             <div class="card custom-card">
                 <div class="card-body">
-                    <h2 class="text-center mb-4">Registrar-se</h2>
-                    <form method="post" action="{% url 'register' %}">
+                    <h2 class="text-center mb-4">Cadastrar-se</h2>
+                    <form method="post">
                         {% csrf_token %}
                         
-                        <!-- Nome -->
                         <div class="mb-4">
-                            <label for="username" class="form-label">Nome</label>
-                            <input type="text" class="form-control rounded" id="username" name="username" value="{{ form.username.value|default_if_none:'' }}">
+                            <label for="username" class="form-label">Nome de Usuário</label>
+                            <input type="text" class="form-control rounded" id="username" name="username" value="{{ form.username.value|default:'' }}">
                             {% if form.username.errors %}
                                 <div class="text-danger mt-1">
                                     {{ form.username.errors }}
@@ -30,18 +28,16 @@
                             {% endif %}
                         </div>
 
-                        <!-- Email -->
                         <div class="mb-4">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control rounded" id="email" name="email" value="{{ form.email.value|default_if_none:'' }}">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email" class="form-control rounded" id="email" name="email" value="{{ form.email.value|default:'' }}">
                             {% if form.email.errors %}
                                 <div class="text-danger mt-1">
                                     {{ form.email.errors }}
                                 </div>
                             {% endif %}
                         </div>
-
-                        <!-- Senha -->
+                        
                         <div class="mb-4">
                             <label for="password" class="form-label">Senha</label>
                             <input type="password" class="form-control rounded" id="password" name="password">
@@ -63,8 +59,8 @@
                         {% endif %}
                     </form>
                 </div>
-                <div class="text-center mt-3">
-                    <small>Já tem uma conta? <a href="{% url 'login' %}">Login</a></small>
+                <div class="text-center">
+                    <small>Já tem uma conta? <a href="{% url 'login' %}">Entrar</a></small>
                 </div>
             </div>
         </div>

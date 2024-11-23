@@ -21,13 +21,11 @@
             {% endif %}
         </div>
         <div class="profile-info">
-            <p><strong>Nome:</strong> {{ user.profile.name }}</p>
             <p><strong>Email:</strong> {{ user.profile.email }}</p>
             <p><strong>Data de cadastro:</strong> {{ user.date_joined|date:"d/m/Y" }}</p>
         </div>
         <div class="profile-actions">
             <a href="{% url 'profile_photo' %}" class="btn btn-primary">Editar Foto de Perfil</a>
-            <a href="{% url 'logout' %}" class="btn btn-danger">Sair</a>
         </div>
     </div>
 </div>

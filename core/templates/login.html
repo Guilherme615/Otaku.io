@@ -19,7 +19,7 @@
                         {% csrf_token %}
                         
                         <div class="mb-4">
-                            <label for="username" class="form-label">Email</label>
+                            <label for="username" class="form-label">Nome</label>
                             <input type="text" class="form-control rounded" id="username" name="username">
                             {% if form.username.errors %}
                                 <div class="text-danger mt-1">

@@ -50,7 +50,11 @@
                     {% if user.is_authenticated %}
                         <div class="navbar-profile">
                             <a href="{% url 'profile' %}" style="text-decoration: none; color: inherit;">
-                                <img src="{{ user.profile.photo.url }}" alt="User Photo" class="profile-picture">
+                                {% if user.profile.photo %}
+                                    <img src="{{ user.profile.photo.url }}" alt="User Photo" class="profile-picture">
+                                {% else %}
+                                    <img src="{% static 'img/default_profile.png' %}" alt="Default Photo" class="profile-picture">
+                                {% endif %}
                                 <span>{{ user.username }}</span>
                             </a>
                         </div>
