@@ -1,11 +1,11 @@
 from django.views.generic import TemplateView
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth import login, authenticate
 from .forms import CustomUserCreationForm, ProfilePictureForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from .models import Profile
+from .models import Profile, Obra, Opiniao
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.dispatch import receiver
@@ -105,3 +105,25 @@ def profile(request):
     if not user_profile.photo:
         user_profile.photo = 'profile_photos/default_profile.png'
     return render(request, 'profile.html', {'user': request.user})
+
+def detalhes_obra(request, titulo):
+    # Tenta pegar a obra pelo título
+    obra = Obra.objects.filter(titulo=titulo).first()
+
+    # Se a obra não existir, cria ela
+    if not obra:
+        # Aqui você pode adicionar mais dados caso queira (como capa, descrição, etc)
+        obra = Obra.objects.create(titulo=titulo, capa=f"{titulo}.jpg")
+
+    # Agora, pega as opiniões relacionadas a essa obra
+    opinioes = Opiniao.objects.filter(obra=obra).order_by('-data_criacao')
+
+    # Quando o usuário envia uma nova opinião
+    if request.method == "POST":
+        usuario = request.user.username  # Aqui usa o nome do usuário logado
+        texto = request.POST.get("texto")
+        if usuario and texto:
+            Opiniao.objects.create(obra=obra, usuario=usuario, texto=texto)
+
+    # Retorna o template com os dados da obra e opiniões
+    return render(request, 'opiniao.html', {'obra': obra, 'opinioes': opinioes})

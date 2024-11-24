@@ -1,0 +1,44 @@
+{% extends 'modelo.html' %}
+{% load static %}
+
+{% block titulo %}
+    <title>Opiniões sobre {{ obra.titulo }}</title>
+{% endblock %}
+
+{% block conteudo %}
+<div class="container mt-5">
+    <div class="obra-detalhes">
+        <h1>{{ obra.titulo }}</h1>  <!-- Substitui os underscores por espaços -->
+        <img src="{% static 'img/' %}{{ obra.capa }}" alt="{{ obra.titulo }}" class="obra-capa">
+    </div>
+
+    <div class="opiniao-form mt-4">
+        <h2>Deixe sua Opinião</h2>
+        {% if user.is_authenticated %}
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group mt-3">
+                    <label for="texto">Sua opinião:</label>
+                    <textarea id="texto" name="texto" rows="4" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Enviar Opinião</button>
+            </form>
+        {% else %}
+            <p>Você precisa estar logado para deixar uma opinião.</p>
+        {% endif %}
+    </div>
+
+    <div class="opiniao-list mt-5">
+        <h2>Opiniões:</h2>
+        {% for opiniao in opinioes %}
+            <div class="opiniao">
+                <p><strong>{{ opiniao.usuario }}</strong> disse:</p>
+                <p>{{ opiniao.texto }}</p>
+                <small class="text-muted">Em {{ opiniao.data_criacao|date:"d/m/Y H:i" }}</small>
+            </div>
+        {% empty %}
+            <p>Nenhuma opinião foi registrada ainda.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

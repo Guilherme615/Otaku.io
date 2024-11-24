@@ -15,4 +15,5 @@ path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 path('profile_photo/', views.upload_profile_picture, name='profile_photo'),
 path('profile/', views.profile_view, name='profile'),  # Nome da URL é 'profile'
 path('profile_photo/', views.upload_profile_picture, name='profile_photo'),
+path('obra/<str:titulo>/', views.detalhes_obra, name='detalhes_obra'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
