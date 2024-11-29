@@ -172,3 +172,12 @@ footer {
 .btn-danger:hover {
     background-color: #b21f2d;
 }
+
+.obra-capa {
+    width: 500px; /* Defina a largura fixa */
+    height: 700px; /* Defina a altura fixa */
+    object-fit: cover; /* Ajusta o conteúdo sem distorção */
+    display: block; /* Garante que funcione bem em layouts */
+    margin: 0; /* Remove qualquer alinhamento central *//* Centraliza a imagem, opcional */
+    border-radius: 25px; /* Bordas arredondadas, opcional */
+}

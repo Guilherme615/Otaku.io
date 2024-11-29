@@ -21,6 +21,11 @@
         <a class="navbar-brand" href="">
             <img src="{% static 'img/logo.png' %}" alt="Logo" style="height: 60px;">
         </a>
+        
+        <!-- Botão de alternância para dispositivos móveis -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
@@ -53,7 +58,6 @@
                     </li>
                 {% endif %}
             </ul>
-            
 
             {% if user.is_authenticated %}
             <ul class="navbar-nav navbar-profile ml-auto">
@@ -74,7 +78,6 @@
         </div>
     </nav>
     {% endblock %}
-
 
     {% block conteudo %}
     <div class="container mt-4" id="conteudo">
