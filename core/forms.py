@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, Obra
 from django.core.exceptions import ValidationError
 
 class CustomUserCreationForm(forms.ModelForm):
@@ -30,3 +30,12 @@ class ProfilePictureForm(forms.ModelForm):
         if Profile.objects.filter(email=email).exists():
             raise ValidationError("Esse email já está em uso.")
         return email
+    
+class ObraForm(forms.ModelForm):
+    class Meta:
+        model = Obra
+        fields = ['titulo', 'capa']
+        widgets = {
+            'titulo': forms.TextInput(attrs={'class': 'form-control'}),
+            'capa': forms.FileInput(attrs={'class': 'form-control'}),
+        }

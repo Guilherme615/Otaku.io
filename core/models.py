@@ -11,16 +11,9 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
-# Create your models here.
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
-    # Remova unique=True caso esteja presente e não seja necessário
-    email = models.EmailField(blank=True, null=True)
-
 class Obra(models.Model):
-    titulo = models.CharField(max_length=255)
-    capa = models.ImageField(upload_to='img/', blank=True, null=True)
+    titulo = models.CharField(max_length=200, unique=True)
+    capa = models.ImageField(upload_to='capas/', null=True, blank=True)  # Configura o diretório para uploads
 
     def __str__(self):
         return self.titulo

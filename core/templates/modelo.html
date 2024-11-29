@@ -27,14 +27,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'inicio' %}">Início</a>
                 </li>
-                {% if user.is_authenticated %}   
+                {% if user.is_authenticated and user.is_superuser %}
+                    <!-- Opções para administradores -->
                     <li class="nav-item">
-                        <form action="{% url 'logout' %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit" class="nav-link btn">Sair</button>
-                        </form>
+                        <a class="nav-link" href="{% url 'cadastrar_obra' %}">Cadastrar Obra</a>
                     </li>
-                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'listar_obras' %}">Gerenciar Obras</a>
+                    </li>
+                {% endif %}
+                {% if not user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link btn-custom-login text-light" href="{% url 'login' %}" style="margin-right: 20px;">Login</a>
                     </li>
@@ -42,29 +44,37 @@
                         <a class="nav-link btn-custom text-light" href="{% url 'register' %}">Cadastrar</a>
                     </li>
                 {% endif %}
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <form action="{% url 'logout' %}" method="post" class="mb-0">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link btn">Sair</button>
+                        </form>
+                    </li>
+                {% endif %}
             </ul>
+            
 
             {% if user.is_authenticated %}
             <ul class="navbar-nav navbar-profile ml-auto">
                 <li class="nav-item d-flex align-items-center">
-                    {% if user.is_authenticated %}
-                        <div class="navbar-profile">
-                            <a href="{% url 'profile' %}" style="text-decoration: none; color: inherit;">
-                                {% if user.profile.photo %}
-                                    <img src="{{ user.profile.photo.url }}" alt="User Photo" class="profile-picture">
-                                {% else %}
-                                    <img src="{% static 'img/default-avatar.png' %}" alt="Default Photo" class="profile-picture">
-                                {% endif %}
-                                <span>{{ user.username }}</span>
-                            </a>
-                        </div>
-                    {% endif %}
+                    <div class="navbar-profile">
+                        <a href="{% url 'profile' %}" style="text-decoration: none; color: inherit;">
+                            {% if user.profile.photo %}
+                                <img src="{{ user.profile.photo.url }}" alt="User Photo" class="profile-picture">
+                            {% else %}
+                                <img src="{% static 'img/default-avatar.png' %}" alt="Default Photo" class="profile-picture">
+                            {% endif %}
+                            <span>{{ user.username }}</span>
+                        </a>
+                    </div>
                 </li>
             </ul>            
             {% endif %}
         </div>
     </nav>
     {% endblock %}
+
 
     {% block conteudo %}
     <div class="container mt-4" id="conteudo">
