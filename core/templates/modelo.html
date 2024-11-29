@@ -32,6 +32,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'inicio' %}">Início</a>
                 </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'minhas_solicitacoes' %}">Minhas solicitacoes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'solicitar_obra' %}">Solicitar obra</a>
+                    </li>
+                {% endif %}
                 {% if user.is_authenticated and user.is_superuser %}
                     <!-- Opções para administradores -->
                     <li class="nav-item">
@@ -39,6 +47,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'listar_obras' %}">Gerenciar Obras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'gerenciar_solicitacoes' %}">Gerenciar Solicitações</a>
                     </li>
                 {% endif %}
                 {% if not user.is_authenticated %}

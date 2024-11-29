@@ -26,3 +26,20 @@ class Opiniao(models.Model):
 
     def __str__(self):
         return f"Opinião de {self.usuario} em {self.obra.titulo}"
+
+class SolicitacaoObra(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="solicitacoes")
+    titulo = models.CharField(max_length=200)
+    data_solicitacao = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(
+        max_length=20,
+        choices=(
+            ('Pendente', 'Pendente'),
+            ('Aprovada', 'Aprovada'),
+            ('Recusada', 'Recusada')
+        ),
+        default='Pendente'
+    )
+
+    def __str__(self):
+        return f"Solicitação de {self.usuario.username} - {self.titulo}"

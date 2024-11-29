@@ -1,0 +1,36 @@
+{% extends 'modelo.html' %}
+{% load static %}
+
+{% block conteudo %}
+<div class="container">
+    <h2 class="text-center">Gerenciar Solicitações</h2>
+
+    <!-- Botão para limpar as solicitações -->
+    <form action="{% url 'limpar_solicitacoes' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger mb-3">Limpar Solicitações</button>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for solicitacao in solicitacoes %}
+            <tr>
+                <td>{{ solicitacao.titulo }}</td>
+                <td>{{ solicitacao.status }}</td>
+                <td>
+                    <a href="{% url 'confirmar_solicitacao' solicitacao.id %}" class="btn btn-success">Aprovar</a>
+                    <a href="{% url 'rejeitar_solicitacao' solicitacao.id %}" class="btn btn-danger">Rejeitar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

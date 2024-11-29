@@ -2,16 +2,18 @@ from django.views.generic import TemplateView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth import login, authenticate
-from .forms import CustomUserCreationForm, ProfilePictureForm, ObraForm
+from .forms import CustomUserCreationForm, ProfilePictureForm, ObraForm, SolicitacaoObraForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from .models import Profile, Obra, Opiniao
+from .models import Profile, Obra, Opiniao, SolicitacaoObra
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 import random
+from django.core.exceptions import PermissionDenied
+
 
 # Página inicial
 class IndexView(View):
@@ -170,3 +172,65 @@ def index(request):
     # Retorna a renderização da página com as obras e suas respectivas capas
     return render(request, 'index.html', {'obras_slider': obras_slider})
 
+@login_required
+def solicitar_obra(request):
+    if request.method == 'POST':
+        form = SolicitacaoObraForm(request.POST)
+        if form.is_valid():
+            solicitacao = form.save(commit=False)
+            solicitacao.usuario = request.user
+            solicitacao.save()
+            return redirect('minhas_solicitacoes')
+    else:
+        form = SolicitacaoObraForm()
+    return render(request, 'solicitar_obra.html', {'form': form})
+
+
+@login_required
+def minhas_solicitacoes(request):
+    solicitacoes = SolicitacaoObra.objects.filter(usuario=request.user)
+    return render(request, 'minhas_solicitacoes.html', {'solicitacoes': solicitacoes})
+
+
+@login_required# Apenas administradores
+def gerenciar_solicitacoes(request):
+    solicitacoes = SolicitacaoObra.objects.all()
+    return render(request, 'gerenciar_solicitacoes.html', {'solicitacoes': solicitacoes})
+
+
+@login_required # Apenas administradores
+def confirmar_solicitacao(request, solicitacao_id):
+    solicitacao = get_object_or_404(SolicitacaoObra, id=solicitacao_id)
+    solicitacao.status = 'Aprovada',
+    solicitacao.save()
+    return redirect('gerenciar_solicitacoes')
+
+@login_required # Apenas administradores
+def rejeitar_solicitacao(request, solicitacao_id):
+    solicitacao = get_object_or_404(SolicitacaoObra, id=solicitacao_id)
+    solicitacao.status = 'Recusada',
+    solicitacao.save()
+    return redirect('gerenciar_solicitacoes')
+
+@login_required
+def limpar_solicitacoes(request):
+    # Verifica se o usuário é administrador
+    if not request.user.is_superuser:
+        raise PermissionDenied
+    
+    # Limpa todas as solicitações
+    SolicitacaoObra.objects.all().delete()
+
+    # Redireciona de volta para a página de gerenciamento de solicitações
+    return redirect('gerenciar_solicitacoes')
+
+@login_required
+def excluir_solicitacao(request, id):
+    # Verifica se o usuário é o proprietário da solicitação ou administrador
+    solicitacao = get_object_or_404(SolicitacaoObra, id=id, usuario=request.user)
+
+    # Exclui a solicitação
+    solicitacao.delete()
+
+    # Redireciona de volta para a página de Minhas Solicitações
+    return redirect('minhas_solicitacoes')
