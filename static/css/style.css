@@ -174,10 +174,23 @@ footer {
 }
 
 .obra-capa {
-    width: 500px; /* Defina a largura fixa */
-    height: 700px; /* Defina a altura fixa */
+    width: 100%; /* Largura ajusta ao tamanho do contêiner */
+    max-width: 500px; /* Limita a largura máxima */
+    height: auto; /* Altura ajusta proporcionalmente */
     object-fit: cover; /* Ajusta o conteúdo sem distorção */
     display: block; /* Garante que funcione bem em layouts */
-    margin: 0; /* Remove qualquer alinhamento central *//* Centraliza a imagem, opcional */
-    border-radius: 25px; /* Bordas arredondadas, opcional */
+    margin: 0; /* Centraliza a imagem */
+    border-radius: 25px; /* Bordas arredondadas */
+}
+
+@media (max-width: 768px) {
+    .obra-capa {
+        max-width: 90%; /* Ocupa 90% da largura da tela menor */
+    }
+}
+
+@media (max-width: 480px) {
+    .obra-capa {
+        max-width: 100%; /* Ocupa toda a largura da tela */
+    }
 }
