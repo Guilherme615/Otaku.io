@@ -194,3 +194,37 @@ footer {
         max-width: 100%; /* Ocupa toda a largura da tela */
     }
 }
+
+/* Estilo padrão */
+.nav-item .btn-custom-login,
+.nav-item .btn-custom {
+    padding: 10px 20px; /* Tamanho padrão */
+    font-size: 16px; /* Texto padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    text-align: center; /* Centraliza o texto */
+    display: inline-block; /* Mantém o tamanho do botão */
+    width: auto; /* Evita esticar */
+    margin: 0 5px; /* Espaçamento lateral */
+}
+
+/* Estilo para dispositivos menores */
+@media (max-width: 768px) {
+    .nav-item .btn-custom-login,
+    .nav-item .btn-custom {
+        padding: 8px 12px; /* Botões menores */
+        font-size: 14px; /* Texto menor */
+        margin: 5px 2px; /* Reduz o espaço entre os botões */
+        display: inline-block; /* Garante que fiquem alinhados corretamente */
+        width: auto; /* Evita esticar */
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-item .btn-custom-login,
+    .nav-item .btn-custom {
+        padding: 6px 10px; /* Botões compactos */
+        font-size: 12px; /* Texto menor ainda */
+        margin: 5px 2px; /* Espaço mínimo */
+        width: auto; /* Mantém os botões no tamanho natural */
+    }
+}
