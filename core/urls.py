@@ -24,4 +24,6 @@ urlpatterns = [
     path('confirmar-solicitacao/<int:solicitacao_id>/', views.confirmar_solicitacao, name='confirmar_solicitacao'),
     path('rejeitar-solicitacao/<int:solicitacao_id>/', views.rejeitar_solicitacao, name='rejeitar_solicitacao'),
     path('limpar_solicitacoes/', views.limpar_solicitacoes, name='limpar_solicitacoes'),
+    path('opiniao/editar/<int:id>/', views.editar_opiniao, name='editar_opiniao'),
+    path('opiniao/excluir/<int:id>/', views.excluir_opiniao, name='excluir_opiniao'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

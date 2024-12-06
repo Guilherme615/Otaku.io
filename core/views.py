@@ -116,10 +116,21 @@ def detalhes_obra(request, titulo):
     opinioes = Opiniao.objects.filter(obra=obra).order_by('-data_criacao')
 
     if request.method == "POST":
-        usuario = request.user.username
-        texto = request.POST.get("texto")
-        if usuario and texto:
-            Opiniao.objects.create(obra=obra, usuario=usuario, texto=texto)
+        if "texto" in request.POST:
+            # Se for uma opinião nova
+            usuario = request.user
+            texto = request.POST.get("texto")
+            if usuario and texto:
+                Opiniao.objects.create(obra=obra, usuario=usuario.username, texto=texto)
+
+        elif "delete_opiniao_id" in request.POST:
+            # Se for para excluir uma opinião
+            opiniao_id = request.POST.get("delete_opiniao_id")
+            opiniao = Opiniao.objects.filter(id=opiniao_id, usuario=request.user.username).first()
+            if opiniao:
+                opiniao.delete()
+            # Depois de excluir, redirecionar para a página de detalhes da obra
+            return redirect('detalhes_obra', titulo=obra.titulo)
 
     return render(request, 'opiniao.html', {'obra': obra, 'opinioes': opinioes})
 
@@ -234,3 +245,22 @@ def excluir_solicitacao(request, id):
 
     # Redireciona de volta para a página de Minhas Solicitações
     return redirect('minhas_solicitacoes')
+
+@login_required
+def editar_opiniao(request, id):
+    opiniao = get_object_or_404(Opiniao, id=id, usuario=request.user)
+    if request.method == "POST":
+        novo_texto = request.POST.get("texto", "").strip()
+        if novo_texto:
+            opiniao.texto = novo_texto
+            opiniao.save()
+            return redirect('detalhes_obra', titulo=opiniao.obra.titulo)
+    return render(request, 'editar_opiniao.html', {'opiniao': opiniao})
+
+@login_required
+def excluir_opiniao(request, id):
+    opiniao = get_object_or_404(Opiniao, id=id, usuario=request.user)
+    if request.method == "POST":
+        opiniao.delete()
+        return redirect('detalhes_obra', titulo=opiniao.obra.titulo)
+    return render(request, 'excluir_opiniao.html', {'opiniao': opiniao})
