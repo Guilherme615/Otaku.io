@@ -9,20 +9,23 @@
     <h1 style="text-align: center; margin-top: 20px;">Todas as Obras</h1>
 
     <!-- Grid Responsivo para as Capas -->
-    <div class="row">
-        {% for obra in obras %}
-            <div class="col-md-3 mb-4"> <!-- 4 colunas por linha em telas médias e maiores -->
-                <a href="{% url 'detalhes_obra' obra.titulo %}">
-                    <div class="card">
-                        <img src="{{ obra.capa.url }}" class="card-img-top" alt="{{ obra.titulo }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ obra.titulo }}</h5>
+    <div class="container-fluid px-0">  <!-- container sem padding horizontal -->
+        <div class="row no-gutters"> <!-- no-gutters para remover o espaçamento entre as colunas -->
+            {% for obra in obras %}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"> <!-- Responsivo: 1 coluna (small), 2 colunas (medium), 3 colunas (large) -->
+                    <a href="{% url 'detalhes_obra' obra.titulo %}">
+                        <div class="card">
+                            <img src="{{ obra.capa.url }}" class="card-img-top" alt="{{ obra.titulo }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ obra.titulo }}</h5>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-        {% empty %}
-            <p>Nenhuma obra cadastrada.</p>
-        {% endfor %}
+                    </a>
+                </div>
+            {% empty %}
+                <p>Nenhuma obra cadastrada.</p>
+            {% endfor %}
+        </div>
     </div>
+
 {% endblock %}
