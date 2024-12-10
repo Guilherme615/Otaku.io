@@ -9,7 +9,7 @@
 <div class="container mt-5">
     <div class="obra-detalhes">
         <h1>{{ obra.titulo }}</h1>  <!-- Substitui os underscores por espaços -->
-        <img src="{% static 'img/' %}{{ obra.capa }}" alt="{{ obra.titulo }}" class="obra-capa">
+        <img src="{{ obra.capa.url }}" alt="{{ obra.titulo }}" class="obra-capa">
     </div>
 
     <div class="opiniao-form mt-4">

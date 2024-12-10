@@ -1,0 +1,28 @@
+{% extends 'modelo.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Todas as Obras</title>
+{% endblock %}
+
+{% block conteudo %}
+    <h1 style="text-align: center; margin-top: 20px;">Todas as Obras</h1>
+
+    <!-- Grid Responsivo para as Capas -->
+    <div class="row">
+        {% for obra in obras %}
+            <div class="col-md-3 mb-4"> <!-- 4 colunas por linha em telas médias e maiores -->
+                <a href="{% url 'detalhes_obra' obra.titulo %}">
+                    <div class="card">
+                        <img src="{{ obra.capa.url }}" class="card-img-top" alt="{{ obra.titulo }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ obra.titulo }}</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% empty %}
+            <p>Nenhuma obra cadastrada.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

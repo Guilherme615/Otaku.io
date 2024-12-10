@@ -18,7 +18,13 @@ from django.core.exceptions import PermissionDenied
 # Página inicial
 class IndexView(View):
     def get(self, request):
-        return render(request, 'index.html')
+        # Pega todas as obras cadastradas
+        obras = Obra.objects.all()
+        
+        # Embaralha as obras e pega as 10 primeiras
+        random_obras = random.sample(list(obras), min(len(obras), 10))
+        
+        return render(request, 'index.html', {'obras': random_obras})
 
 # Registro de usuário
 def register(request):
@@ -172,17 +178,6 @@ def excluir_obra(request, obra_id):
         return redirect('listar_obras')
     return render(request, 'confirmar_exclusao.html', {'obra': obra})
 
-# Página inicial com obras para o slider
-def index(request):
-    # Obtém todas as obras cadastradas
-    obras = Obra.objects.all()
-    
-    # Seleciona até 10 obras aleatórias, sem repetir
-    obras_slider = random.sample(list(obras), min(len(obras), 10))
-    
-    # Retorna a renderização da página com as obras e suas respectivas capas
-    return render(request, 'index.html', {'obras_slider': obras_slider})
-
 @login_required
 def solicitar_obra(request):
     if request.method == 'POST':
@@ -264,3 +259,7 @@ def excluir_opiniao(request, id):
         opiniao.delete()
         return redirect('detalhes_obra', titulo=opiniao.obra.titulo)
     return render(request, 'excluir_opiniao.html', {'opiniao': opiniao})
+
+def todas_as_obras(request):
+    obras = Obra.objects.all()
+    return render(request, 'todas_as_obras.html', {'obras': obras})
