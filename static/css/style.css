@@ -229,7 +229,7 @@ footer {
     }
 }
 
-.card {
+.card_obra {
     width: 50%;
     height: auto;
     display: block;
@@ -238,4 +238,5 @@ footer {
     margin-right: auto;
     border-radius: 25px; 
     overflow: hidden;
+    background-color: #fcfaf9;
 }

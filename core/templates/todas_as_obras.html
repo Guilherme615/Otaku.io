@@ -14,7 +14,7 @@
             {% for obra in obras %}
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"> <!-- Responsivo: 1 coluna (small), 2 colunas (medium), 3 colunas (large) -->
                     <a href="{% url 'detalhes_obra' obra.titulo %}">
-                        <div class="card">
+                        <div class="card_obra">
                             <img src="{{ obra.capa.url }}" class="card-img-top" alt="{{ obra.titulo }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ obra.titulo }}</h5>
