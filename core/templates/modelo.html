@@ -34,6 +34,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'inicio' %}">Início</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'todas_as_obras' %}">Obras</a>
+                </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'minhas_solicitacoes' %}">Minhas solicitacoes</a>
