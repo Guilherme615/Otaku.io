@@ -280,9 +280,16 @@ footer {
     margin: 0;
 }
 
+.pagination1 {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    margin-top: 20px; /* Espaçamento superior para a área de paginação */
+}
+
 .pagination .page-item {
     margin: 0 5px;
 }
+
 
 .pagination .page-link {
     padding: 8px 12px;

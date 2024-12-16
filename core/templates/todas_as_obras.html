@@ -28,4 +28,28 @@
         </div>
     </div>
 
+    <!-- Paginação -->
+    <div class="pagination1">
+        <nav aria-label="Páginas">
+            <ul class="pagination">
+                {% if obras.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ obras.previous_page_number }}">Anterior</a>
+                </li>
+                {% endif %}
+                
+                {% for num in obras.paginator.page_range %}
+                <li class="page-item {% if num == obras.number %}active{% endif %}">
+                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                </li>
+                {% endfor %}
+                
+                {% if obras.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ obras.next_page_number }}">Próximo</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
 {% endblock %}

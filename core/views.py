@@ -266,5 +266,10 @@ def excluir_opiniao(request, id):
     return render(request, 'excluir_opiniao.html', {'opiniao': opiniao})
 
 def todas_as_obras(request):
-    obras = Obra.objects.all()
+    obras_list = Obra.objects.all()
+    paginator = Paginator(obras_list, 8)  # 8 obras por página
+
+    page = request.GET.get('page')
+    obras = paginator.get_page(page)
+
     return render(request, 'todas_as_obras.html', {'obras': obras})
