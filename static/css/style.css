@@ -262,13 +262,37 @@ footer {
     width: 50%;
     height: auto;
     display: block;
-    margin-top: 20px; /* Apenas desce o elemento */
+    margin-top: 20px; 
     margin-left: auto;
     margin-right: auto;
     border-radius: 25px; 
     overflow: hidden;
     background-color: #fcfaf9;
+    transition: transform 0.3s ease; /* Adiciona a suavidade da animação */
 }
+
+.card_obra:hover {
+    transform: scale(1.05); /* Anima o card ao passar o mouse */
+}
+
+.card_obra a {
+    text-decoration: none;
+    color: #B1313F; /* Altera a cor do texto */
+}
+
+.card_obra a:hover {
+    color: #86242e; /* Altera a cor do texto quando o link é ativado */
+}
+
+.card_obra img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 25px;
+}
+
 
 .profile-info-box {
     border: 1px solid #ddd;
