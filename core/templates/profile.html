@@ -1,31 +1,34 @@
 {% extends 'modelo.html' %}
 {% load static %}
 
-{% block titulo %}
-    <title>Perfil do Usuário</title>
-{% endblock %}
-<!--menu principal, fonte-->
 {% block conteudo %}
-<div class="profile-container">
-    <div class="profile-card">
-        <div class="profile-header">
-            <h2>Perfil de {{ user.username }}</h2>
-        </div>
-        <div class="profile-photo">
+<div class="container mt-5">
+    <div class="custom-card">
+        <h2 class="text-center mb-4">Perfil de {{ user.username }}</h2>
+
+        <!-- Foto do Perfil -->
+        <div class="text-center mb-4">
             {% if user.profile.photo %}
-                <!-- Exibe a foto de perfil do usuário -->
-                <img src="{{ user.profile.photo.url }}" alt="Foto de Perfil" class="profile-image">
+                <img src="{{ user.profile.photo.url }}" alt="Foto de Perfil" class="rounded-circle" style="width: 120px; height: 120px; object-fit: cover;">
             {% else %}
-                <!-- Exibe uma imagem padrão se o usuário não tiver uma foto de perfil -->
-                <img src="{% static 'img/default-avatar.png' %}" alt="Foto Padrão" class="profile-image">
+                <img src="{% static 'img/default-avatar.png' %}" alt="Foto Padrão" class="rounded-circle" style="width: 120px; height: 120px; object-fit: cover;">
             {% endif %}
         </div>
-        <div class="profile-info">
-            <p><strong>Email:</strong> {{ user.profile.email }}</p>
-            <p><strong>Data de cadastro:</strong> {{ user.date_joined|date:"d/m/Y" }}</p>
+
+        <!-- Informações do Usuário em caixas -->
+        <div class="profile-info-box mb-3">
+            <p><strong>Nome de Usuário:</strong> {{ user.username }}</p>
         </div>
-        <div class="profile-actions">
-            <a href="{% url 'profile_photo' %}" class="btn btn-primary">Editar Foto de Perfil</a>
+        <div class="profile-info-box mb-3">
+            <p><strong>Email:</strong> {{ user.profile.email }}</p>
+        </div>
+        <div class="profile-info-box mb-3">
+            <p><strong>Data de Cadastro:</strong> {{ user.date_joined|date:"d/m/Y" }}</p>
+        </div>
+
+        <!-- Ações -->
+        <div class="text-center mt-4">
+            <a href="{% url 'profile_photo' %}" class="btn btn-custom">Editar Foto de Perfil</a>
         </div>
     </div>
 </div>
