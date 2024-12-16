@@ -12,7 +12,7 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="mb-3">
-                <label for="titulo" class="form-label">Título da Obra</label>
+                <label for="titulo" class="form-label">Informe o Título da Obra:</label>
                 {{ form.titulo }}
             </div>
             <div class="upload-area text-center">
@@ -66,8 +66,8 @@
     }
 
     .upload-rectangle {
-        width: 180px; /* Proporção 9:16 */
-        height: 320px; /* Proporção 9:16 */
+        width: 180px;
+        height: 230px;
         background-color: #6c757d; /* Cor de fundo cinza */
         border: 2px dashed #495057; /* Cor da borda */
         border-radius: 8px;

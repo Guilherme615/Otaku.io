@@ -279,3 +279,38 @@ footer {
 .profile-info-box p {
     margin: 0;
 }
+
+.pagination .page-item {
+    margin: 0 5px;
+}
+
+.pagination .page-link {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    color: #6f726c;
+    background-color: #FFF3DE;
+    border: 1px solid #ddd;
+    text-decoration: none;
+}
+
+.pagination .page-link:hover {
+    background-color: #767666;
+    color: #FFF;
+}
+
+.pagination .active .page-link {
+    background-color: #B1313F;
+    border-color: #B1313F;
+    color: #FFF;
+}
+
+.pagination .page-item:first-child .page-link {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination .page-item:last-child .page-link {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
