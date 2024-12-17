@@ -11,6 +11,7 @@ from django.db import IntegrityError
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 import random
 from django.core.exceptions import PermissionDenied
 
@@ -153,8 +154,12 @@ def cadastrar_obra(request):
 
 # Listagem de obras
 def listar_obras(request):
-    obras = list(Obra.objects.all())
-    random.shuffle(obras)  # Embaralha as obras
+    obras_list = Obra.objects.all()
+    paginator = Paginator(obras_list, 5)  # Show 10 obras per page.
+    
+    page_number = request.GET.get('page')
+    obras = paginator.get_page(page_number)
+
     return render(request, 'listar_obras.html', {'obras': obras})
 
 
@@ -261,5 +266,10 @@ def excluir_opiniao(request, id):
     return render(request, 'excluir_opiniao.html', {'opiniao': opiniao})
 
 def todas_as_obras(request):
-    obras = Obra.objects.all()
+    obras_list = Obra.objects.all()
+    paginator = Paginator(obras_list, 8)  # 8 obras por página
+
+    page = request.GET.get('page')
+    obras = paginator.get_page(page)
+
     return render(request, 'todas_as_obras.html', {'obras': obras})

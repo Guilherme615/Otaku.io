@@ -1,6 +1,8 @@
 {% extends 'modelo.html' %}
 {% load static %}
-
+{% block titulo %}
+    <title>Solicitar Obra</title>
+{% endblock %}
 {% block conteudo %}
 <div class="container">
     <div class="custom-card">
@@ -10,7 +12,7 @@
             
             <!-- Campo de Título com Estilo -->
             <div class="form-group">
-                <label for="id_titulo">Título da Obra</label>
+                <label for="id_titulo">Informe o Título da Obra</label>
                 <input type="text" name="titulo" class="form-control" maxlength="200" required id="id_titulo">
             </div>
 

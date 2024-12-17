@@ -6,13 +6,18 @@
 {% endblock %}
 
 {% block conteudo %}
-<div class="container mt-5">
-    <div class="obra-detalhes">
-        <h1>{{ obra.titulo }}</h1>  <!-- Substitui os underscores por espaços -->
-        <img src="{{ obra.capa.url }}" alt="{{ obra.titulo }}" class="obra-capa">
+<div class="container1 mt-5">
+
+    <!-- Detalhes da Obra -->
+    <div class="obra-detalhes mb-5">
+        <div class="custom-card1 mt-5">
+            <h1>{{ obra.titulo }}</h1>
+        </div>
+        <img src="{{ obra.capa.url }}" alt="{{ obra.titulo }}" class="obra-capa img-fluid">
     </div>
 
-    <div class="opiniao-form mt-4">
+    <!-- Formulário de Opinião -->
+    <div class="opiniao-form mt-5">
         <h2>Deixe sua Opinião</h2>
         {% if user.is_authenticated %}
             <form method="POST">
@@ -28,31 +33,38 @@
         {% endif %}
     </div>
 
-    <div class="opiniao-list mt-5">
-        <h2>Opiniões:</h2>
-        {% for opiniao in opinioes %}
-            <div class="opiniao">
-                <p><strong>{{ opiniao.usuario }}</strong> disse:</p>
-                <p>{{ opiniao.texto }}</p>
-                <small class="text-muted">Em {{ opiniao.data_criacao|date:"d/m/Y H:i" }}</small>
-                
-                {% if user.is_authenticated and opiniao.usuario == user.username %}
-                <div class="mt-3">
-                    <a href="{% url 'editar_opiniao' opiniao.id %}" class="btn btn-warning btn-sm">Editar</a>
-    
-                    <!-- Formulário para exclusão -->
-                    <form method="POST" action="{% url 'detalhes_obra' obra.titulo %}" style="display: inline;">
-                        {% csrf_token %}
-                        <input type="hidden" name="delete_opiniao_id" value="{{ opiniao.id }}">
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta opinião?')">Excluir</button>
-                    </form>
+    <!-- Lista de Opiniões -->
+    <div class="custom-card1 mt-5">
+        <h2 class="text-center mb-4">Opiniões:</h2>
+        {% if opinioes %}
+            {% for opiniao in opinioes %}
+                <div class="profile-info-box mb-4 p-3" style="background-color: #2c2f48; border-radius: 8px;">
+                    <p><strong>{{ opiniao.usuario }}</strong> disse:</p>
+                    <p>{{ opiniao.texto }}</p>
+                    <small class="text-muted">Em {{ opiniao.data_criacao|date:"d/m/Y H:i" }}</small>
+                    
+                    {% if user.is_authenticated and opiniao.usuario == user.username %}
+                    <div class="mt-3 text-center">
+                        <a href="{% url 'editar_opiniao' opiniao.id %}" class="btn btn-warning btn-sm">Editar</a>
+                        <!-- Formulário para exclusão -->
+                        <form method="POST" action="{% url 'detalhes_obra' obra.titulo %}" style="display: inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="delete_opiniao_id" value="{{ opiniao.id }}">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta opinião?')">Excluir</button>
+                        </form>
+                    </div>
+                    {% endif %}
                 </div>
-                {% endif %}
-            </div>
-        {% empty %}
-            <p>Nenhuma opinião foi registrada ainda.</p>
-        {% endfor %}
+            {% endfor %}
+        {% else %}
+            <p class="text-muted text-center">Nenhuma opinião foi registrada ainda.</p>
+        {% endif %}
     </div>
     
 </div>
+
+<style>
+   
+
+</style>
 {% endblock %}

@@ -1,3 +1,32 @@
+/* Fontes do Google */
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body, input, button, .form-label, .form-control, .btn-custom, .btn-custom-login, .profile-header h2, .profile-info p, .profile-actions .btn, .obra-capa, .nav-item .btn-custom-login, .nav-item .btn-custom {
+    font-family: 'Poppins', 'Inter', 'Courier Prime', sans-serif;
+}
+
+.custom-card, .form-group {
+    font-family: 'Poppins', 'Inter', 'Courier Prime', sans-serif;
+}
+
+.form-control:focus {
+    font-family: 'Poppins', 'Inter', 'Courier Prime', sans-serif;
+}
+
+/* Ajustes para dispositivos menores */
+@media (max-width: 768px) {
+    .nav-item .btn-custom-login, .nav-item .btn-custom {
+        font-family: 'Poppins', 'Inter', 'Courier Prime', sans-serif;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-item .btn-custom-login, .nav-item .btn-custom {
+        font-family: 'Poppins', 'Inter', 'Courier Prime', sans-serif;
+    }
+}
+
+
 /* Gradiente de fundo */
 body {
     min-height: 100vh; /* Define a altura mínima para cobrir toda a tela */
@@ -233,13 +262,37 @@ footer {
     width: 50%;
     height: auto;
     display: block;
-    margin-top: 20px; /* Apenas desce o elemento */
+    margin-top: 20px; 
     margin-left: auto;
     margin-right: auto;
     border-radius: 25px; 
     overflow: hidden;
     background-color: #fcfaf9;
+    transition: transform 0.3s ease; /* Adiciona a suavidade da animação */
 }
+
+.card_obra:hover {
+    transform: scale(1.15); /* Anima o card ao passar o mouse */
+}
+
+.card_obra a {
+    text-decoration: none;
+    color: #B1313F; /* Altera a cor do texto */
+}
+
+.card_obra a:hover {
+    color: #86242e; /* Altera a cor do texto quando o link é ativado */
+}
+
+.card_obra img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 25px;
+}
+
 
 .profile-info-box {
     border: 1px solid #ddd;
@@ -249,4 +302,179 @@ footer {
 }
 .profile-info-box p {
     margin: 0;
+}
+
+.pagination1 {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    margin-top: 20px; /* Espaçamento superior para a área de paginação */
+}
+
+.pagination .page-item {
+    margin: 0 5px;
+}
+
+
+.pagination .page-link {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    color: #6f726c;
+    background-color: #FFF3DE;
+    border: 1px solid #ddd;
+    text-decoration: none;
+}
+
+.pagination .page-link:hover {
+    background-color: #767666;
+    color: #FFF;
+}
+
+.pagination .active .page-link {
+    background-color: #B1313F;
+    border-color: #B1313F;
+    color: #FFF;
+}
+
+.pagination .page-item:first-child .page-link {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination .page-item:last-child .page-link {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* Estilo para o foco com borda suave e esmaecendo */
+.page-link {
+    transition: box-shadow 0.3s ease; /* Suaviza a transição do box-shadow */
+}
+
+/* Estilo para o foco com borda suave */
+.page-link:focus {
+    box-shadow: 0 0 0 0.2rem #1D2D44; /* Azul suave com transparência */
+}
+
+
+
+.custom-navbar {
+    background-color: #1D2D44   ; /* Azul padrão */
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #fff; /* Cor do texto em branco */
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #e0e0e0; /* Cor do texto ao passar o mouse */
+}
+
+.btn-dark-gray {
+    background-color: #575757; /* Um tom de cinza mais escuro */
+    color: white;
+    border: none;
+}
+
+.btn-dark-gray:hover {
+    background-color: #494949; /* Escurece um pouco mais ao passar o mouse */
+}
+
+
+
+
+
+
+
+
+
+
+/* Estilos principais */
+.container1 {
+    width: 50%; /* Faz o container ocupar toda a largura da tela */
+    max-width: 1200px; /* Limita o tamanho máximo para 1200px, se desejar um limite */
+    margin: auto; /* Centraliza o container */
+    background-color: #FFF3DE; /* Fundo escuro */
+    color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+/* Título da obra */
+.obra-titulo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #cdd6f4; /* Cor clara para título */
+}
+
+/* Imagem da obra */
+.obra-capa {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* Formulário de comentários */
+.opiniao-form h2 {
+    font-size: 1.8rem;
+    color: #cdd6f4;
+    margin-bottom: 15px;
+}
+
+.opiniao-form textarea {
+    background-color:  #ffffff;
+    color: #cdd6f4;
+    border: 1px solid #3b3b5c;
+    border-radius: 4px;
+}
+
+.btn-primary {
+    background-color: #8aadf4;
+    border: none;
+    color: #1e1e2e;
+    font-weight: bold;
+}
+
+/* Estilos dos comentários */
+.custom-card1 {
+    background-color:  #1D2D44;
+    padding: 20px;
+    border-radius: 8px;
+    color: #ffffff;
+}
+
+.profile-info-box {
+    background-color:  #1D2D44;
+    border: 1px solid #3b3b5c;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.profile-info-box p {
+    margin-bottom: 10px;
+}
+
+.profile-info-box small {
+    font-size: 0.8rem;
+    color: #8aadf4;
+}
+
+.profile-info-box .btn {
+    margin: 5px;
+}
+
+/* Botões de ação (editar, excluir) */
+.btn-sm {
+    font-size: 0.8rem;
+}
+
+/* Separação do formulário de opinião da imagem */
+.opiniao-form {
+    margin-top: 40px;
+}
+
+/* Aumentando o espaçamento dos comentários */
+.profile-info-box {
+    margin-bottom: 30px;
 }

@@ -8,6 +8,7 @@
 {% block conteudo %}
 <div class="container mt-5">
     <h1 class="mb-4">Listar Obras</h1>
+    
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
@@ -24,7 +25,6 @@
                 </td>
                 <td>{{ obra.titulo }}</td>
                 <td>
-                    <a href="{% url 'editar_obra' obra.id %}" class="btn btn-primary btn-sm">Editar</a>
                     <form action="{% url 'excluir_obra' obra.id %}" method="POST" style="display: inline;">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta obra?')">Excluir</button>
@@ -34,5 +34,29 @@
             {% endfor %}
         </tbody>
     </table>
+    
+    <div class="pagination">
+        <nav aria-label="Páginas">
+            <ul class="pagination">
+                {% if obras.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ obras.previous_page_number }}">Anterior</a>
+                </li>
+                {% endif %}
+                
+                {% for num in obras.paginator.page_range %}
+                <li class="page-item {% if num == obras.number %}active{% endif %}">
+                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                </li>
+                {% endfor %}
+                
+                {% if obras.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ obras.next_page_number }}">Próximo</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
 </div>
 {% endblock %}
