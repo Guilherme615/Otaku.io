@@ -64,7 +64,85 @@
 </div>
 
 <style>
-   
+    /* Estilos gerais para responsividade */
+    .container1 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 
+    /* Ajuste do título e imagem para telas pequenas */
+    .obra-detalhes h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .obra-capa {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Estilização do formulário */
+    .opiniao-form h2 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .form-control {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    /* Ajustes para lista de opiniões */
+    .profile-info-box p {
+        font-size: 1rem;
+    }
+
+    .profile-info-box small {
+        font-size: 0.8rem;
+    }
+
+    /* Responsividade para telas pequenas */
+    @media (max-width: 768px) {
+        .container1 {
+            padding: 10px;
+        }
+
+        .custom-card1 {
+            padding: 15px;
+        }
+
+        .obra-detalhes h1 {
+            font-size: 1.25rem;
+        }
+
+        .btn-primary, .btn-warning, .btn-danger {
+            font-size: 0.9rem;
+            padding: 8px;
+        }
+
+        .profile-info-box {
+            padding: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container1 {
+            padding: 5px;
+        }
+
+        .obra-detalhes h1 {
+            font-size: 1rem;
+        }
+
+        .btn-primary, .btn-warning, .btn-danger {
+            font-size: 0.8rem;
+            padding: 7px;
+        }
+    }
 </style>
+
 {% endblock %}

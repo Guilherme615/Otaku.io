@@ -26,6 +26,17 @@ body, input, button, .form-label, .form-control, .btn-custom, .btn-custom-login,
     }
 }
 
+@media (max-width: 768px) {
+    .obra-detalhes h1 {
+        font-size: 1.5rem;
+    }
+    .opiniao-form h2 {
+        font-size: 1.25rem;
+    }
+    .profile-info-box {
+        padding: 15px;
+    }
+}
 
 /* Gradiente de fundo */
 body {
