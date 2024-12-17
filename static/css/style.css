@@ -272,7 +272,7 @@ footer {
 }
 
 .card_obra:hover {
-    transform: scale(1.05); /* Anima o card ao passar o mouse */
+    transform: scale(1.15); /* Anima o card ao passar o mouse */
 }
 
 .card_obra a {
@@ -344,4 +344,38 @@ footer {
 .pagination .page-item:last-child .page-link {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+
+/* Estilo para o foco com borda suave e esmaecendo */
+.page-link {
+    transition: box-shadow 0.3s ease; /* Suaviza a transição do box-shadow */
+}
+
+/* Estilo para o foco com borda suave */
+.page-link:focus {
+    box-shadow: 0 0 0 0.2rem #1D2D44; /* Azul suave com transparência */
+}
+
+
+
+.custom-navbar {
+    background-color: #1D2D44   ; /* Azul padrão */
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #fff; /* Cor do texto em branco */
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #e0e0e0; /* Cor do texto ao passar o mouse */
+}
+
+.btn-dark-gray {
+    background-color: #575757; /* Um tom de cinza mais escuro */
+    color: white;
+    border: none;
+}
+
+.btn-dark-gray:hover {
+    background-color: #494949; /* Escurece um pouco mais ao passar o mouse */
 }
