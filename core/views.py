@@ -212,14 +212,13 @@ def gerenciar_solicitacoes(request):
 @login_required # Apenas administradores
 def confirmar_solicitacao(request, solicitacao_id):
     solicitacao = get_object_or_404(SolicitacaoObra, id=solicitacao_id)
-    solicitacao.status = 'Aprovada',
+    solicitacao.status = 'aprovado'
     solicitacao.save()
     return redirect('gerenciar_solicitacoes')
 
-@login_required # Apenas administradores
 def rejeitar_solicitacao(request, solicitacao_id):
     solicitacao = get_object_or_404(SolicitacaoObra, id=solicitacao_id)
-    solicitacao.status = 'Recusada',
+    solicitacao.status = 'rejeitado'
     solicitacao.save()
     return redirect('gerenciar_solicitacoes')
 

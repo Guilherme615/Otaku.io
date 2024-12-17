@@ -380,15 +380,6 @@ footer {
     background-color: #494949; /* Escurece um pouco mais ao passar o mouse */
 }
 
-
-
-
-
-
-
-
-
-
 /* Estilos principais */
 .container1 {
     width: 50%; /* Faz o container ocupar toda a largura da tela */
@@ -484,4 +475,28 @@ footer {
     color: #1D2D44;
     text-align: left;
     display: block; /* Garante que o elemento ocupe toda a largura do contêiner */
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.4em 0.7em;
+    font-size: 0.9em;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 0.5rem;
+}
+
+.badge-success {
+    background-color: #28a745 !important; /* Verde para aprovado */
+    color: #fff;
+}
+
+.badge-danger {
+    background-color: #dc3545 !important; /* Vermelho para negado */
+    color: #fff;
+}
+
+.badge-secondary {
+    background-color: #6c757d !important; /* Cinza para outros */
+    color: #fff;
 }

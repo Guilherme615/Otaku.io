@@ -19,7 +19,15 @@
             {% for solicitacao in solicitacoes %}
             <tr>
                 <td>{{ solicitacao.titulo }}</td>
-                <td>{{ solicitacao.status }}</td>
+                <td>
+                    {% if solicitacao.status == "aprovado" %}
+                        <span class="badge bg-success">Aprovado</span>
+                    {% elif solicitacao.status == "rejeitado" %}
+                        <span class="badge bg-danger">Recusado</span>
+                    {% else %}
+                        <span class="badge bg-warning text-dark">Pendente</span>
+                    {% endif %}
+                </td>
                 <td>{{ solicitacao.data_solicitacao }}</td>
                 <td>
                     <a href="{% url 'excluir_solicitacao' solicitacao.id %}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir esta solicitação?')">Excluir</a> <!-- Botão de Exclusão com confirmação -->
