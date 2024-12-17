@@ -418,7 +418,7 @@ footer {
 /* Formulário de comentários */
 .opiniao-form h2 {
     font-size: 1.8rem;
-    color: #cdd6f4;
+    color: #1D2D44;
     margin-bottom: 15px;
 }
 
@@ -430,10 +430,11 @@ footer {
 }
 
 .btn-primary {
-    background-color: #8aadf4;
+    background-color: #1E2D44;
     border: none;
     color: #1e1e2e;
     font-weight: bold;
+    color: #FFF;
 }
 
 /* Estilos dos comentários */
@@ -477,4 +478,10 @@ footer {
 /* Aumentando o espaçamento dos comentários */
 .profile-info-box {
     margin-bottom: 30px;
+}
+
+.opiniao {
+    color: #1D2D44;
+    text-align: left;
+    display: block; /* Garante que o elemento ocupe toda a largura do contêiner */
 }
